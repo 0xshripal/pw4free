@@ -1,28 +1,697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7c3aed" />
+  <meta name="description" content="JEE and RBSE Hindi-medium batch directory." />
+  <title>StudyHub | Hindi Batches</title>
 
-<style>
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --bg: #080b14;
+      --surface: rgba(255,255,255,.065);
+      --surface-2: rgba(255,255,255,.1);
+      --border: rgba(255,255,255,.12);
+      --text: #f8fafc;
+      --muted: #a9b0c0;
+      --brand: #8b5cf6;
+      --brand-2: #4f46e5;
+      --success: #34d399;
+      --shadow: 0 24px 70px rgba(0,0,0,.38);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(124,58,237,.22), transparent 30rem),
+        radial-gradient(circle at 95% 15%, rgba(59,130,246,.15), transparent 30rem),
+        linear-gradient(180deg, #070912 0%, #0a0e19 48%, #070911 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7,9,18,.72);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,.075);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      font-size: 1.1rem;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--brand), #4f46e5);
+      box-shadow: 0 10px 30px rgba(124,58,237,.32);
+      font-size: 1.08rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      color: #cbd5e1;
+      font-size: .94rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: white; }
+
+    .hero {
+      padding: 82px 0 56px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid rgba(139,92,246,.38);
+      background: rgba(124,58,237,.10);
+      border-radius: 999px;
+      color: #d8ccff;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #a78bfa;
+      box-shadow: 0 0 18px #8b5cf6;
+    }
+
+    h1 {
+      margin: 24px auto 16px;
+      max-width: 850px;
+      font-family: Manrope, sans-serif;
+      font-size: clamp(2.55rem, 6vw, 5.25rem);
+      line-height: .98;
+      letter-spacing: -.06em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(92deg, #ffffff 0%, #d8b4fe 48%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 660px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.02rem;
+    }
+
+    .stats {
+      margin: 34px auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      padding: 11px 15px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.045);
+      color: #dbe3ef;
+      font-size: .87rem;
+      font-weight: 600;
+    }
+
+    .section {
+      padding: 18px 0 88px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: Manrope, sans-serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      letter-spacing: -.04em;
+    }
+
+    .section-subtitle {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .batch-count {
+      color: #c4b5fd;
+      border: 1px solid rgba(139,92,246,.28);
+      background: rgba(124,58,237,.08);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(167,139,250,.45);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+    }
+
+    .cover {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #121827;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+
+    .card:hover .cover img { transform: scale(1.025); }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 54%, rgba(5,8,15,.67));
+      pointer-events: none;
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(7,10,18,.78);
+      border: 1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(12px);
+      color: #f1f5f9;
+      font-size: .72rem;
+      font-weight: 800;
+    }
+
+    .card-body { padding: 20px; }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #aeb6c6;
+      font-size: .78rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      min-height: 52px;
+      margin: 0;
+      font-family: Manrope, sans-serif;
+      font-size: 1.13rem;
+      line-height: 1.45;
+      letter-spacing: -.025em;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .detail {
+      padding: 11px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .detail span {
+      display: block;
+      color: #7f8a9f;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .detail strong {
+      display: block;
+      color: #e8edf6;
+      font-size: .83rem;
+      font-weight: 700;
+    }
+
+    .card-footer {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .price {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .price small { color: #7f8a9f; font-weight: 600; }
+    .price strong { font-size: 1.02rem; }
+
+    .price .free { color: var(--success); }
+
+    .action {
+      border: 0;
+      border-radius: 13px;
+      padding: 10px 14px;
+      background: rgba(139,92,246,.14);
+      border: 1px solid rgba(139,92,246,.27);
+      color: #ddd6fe;
+      font: inherit;
+      font-size: .82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .action:hover {
+      background: rgba(139,92,246,.24);
+      transform: translateY(-1px);
+    }
+
+    body.no-scroll { overflow: hidden; }
+
+    .batch-view {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      background: #05070c;
+    }
+
+    .batch-view.active { display: flex; }
+
+    .viewer-bar {
+      height: 58px;
+      flex: 0 0 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 0 14px;
+      background: rgba(8,11,20,.96);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(16px);
+    }
+
+    .viewer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .back-btn,
+    .direct-btn {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      color: #f8fafc;
+      border-radius: 11px;
+      padding: 9px 12px;
+      font: inherit;
+      font-size: .82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .direct-btn {
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .viewer-title {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: 750;
+      font-size: .9rem;
+      color: #e8edf6;
+    }
+
+    .viewer-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .batch-frame {
+      display: block;
+      border: 0;
+      width: 108.695652%;
+      height: 108.695652%;
+      transform: scale(.92);
+      transform-origin: 0 0;
+      background: #fff;
+    }
+
+    .viewer-note {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      z-index: 2;
+      padding: 7px 9px;
+      border-radius: 9px;
+      background: rgba(8,11,20,.78);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #cbd5e1;
+      font-size: .68rem;
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 27px 0 35px;
+      color: #7f8a9f;
+      font-size: .82rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 22px, 1180px); }
+      .hero { padding: 58px 0 42px; }
+      .grid { grid-template-columns: 1fr; }
+      .section-head { align-items: start; }
+      .card h3 { min-height: auto; }
+      .section { padding-bottom: 58px; }
+
+      .viewer-bar { height: 54px; flex-basis: 54px; padding: 0 9px; }
+      .viewer-title { font-size: .78rem; }
+      .back-btn, .direct-btn { padding: 8px 9px; font-size: .74rem; }
+      .batch-frame {
+        width: 111.111111%;
+        height: 111.111111%;
+        transform: scale(.90);
+      }
+      .viewer-note { display: none; }
+    }
+  </style>
 </head>
-<body>
 
-<iframe src="https://s4-cdn.samfygros.com/"></iframe>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#">
+        <div class="logo-mark">S</div>
+        <span>StudyHub</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#batches">Batches</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Hindi-medium learning</div>
+      <h1><span class="gradient-text">Choose your batch.<br>Start learning smarter.</span></h1>
+      <p>
+        A clean batch directory for JEE and RBSE students. Browse available courses,
+        class details and academic session information from one place.
+      </p>
+
+      <div class="stats">
+        <div class="stat">3 Featured Batches</div>
+        <div class="stat">Hindi Medium</div>
+        <div class="stat">JEE + RBSE</div>
+      </div>
+    </div>
+  </header>
+
+  <main id="batches" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Featured Batches</h2>
+          <p class="section-subtitle">Select the course that matches your class and preparation goal.</p>
+        </div>
+        <div class="batch-count">3 Batches</div>
+      </div>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">IIT-JEE • Class 12</span>
+            <img
+              src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/8371baf3-8fec-4ba4-af0b-130607b833b0.png"
+              alt="Lakshya JEE Hindi 2027"
+              loading="lazy"
+            />
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span>Hindi</span>
+              <span>JEE 2027</span>
+            </div>
+            <h3>Lakshya JEE Hindi 2027</h3>
+
+            <div class="details">
+              <div class="detail"><span>Class</span><strong>12th</strong></div>
+              <div class="detail"><span>Exam</span><strong>IIT-JEE</strong></div>
+              <div class="detail"><span>Starts</span><strong>27 Apr 2026</strong></div>
+              <div class="detail"><span>Ends</span><strong>30 May 2027</strong></div>
+            </div>
+
+            <div class="card-footer">
+              <div class="price"><small>Listed Price</small><strong class="free">Free</strong></div>
+              <button class="action" type="button" onclick="openBatch('678214ed9a04c400aad23145', 'Lakshya JEE Hindi 2027')">Open Batch</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">IIT-JEE • Class 11</span>
+            <img
+              src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/ed3d71f8-5c56-41f8-b6f0-c11d2fc8a8b8.png"
+              alt="Arjuna JEE Hindi 2026"
+              loading="lazy"
+            />
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span>Hindi</span>
+              <span>JEE Foundation</span>
+            </div>
+            <h3>Arjuna JEE Hindi 2026</h3>
+
+            <div class="details">
+              <div class="detail"><span>Class</span><strong>11th</strong></div>
+              <div class="detail"><span>Exam</span><strong>IIT-JEE</strong></div>
+              <div class="detail"><span>Starts</span><strong>04 May 2025</strong></div>
+              <div class="detail"><span>Ends</span><strong>30 Jun 2027</strong></div>
+            </div>
+
+            <div class="card-footer">
+              <div class="price"><small>Listed Price</small><strong class="free">Free</strong></div>
+              <button class="action" type="button" onclick="openBatch('676e530042356584ca23370f', 'Arjuna JEE Hindi 2026')">Open Batch</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">RBSE • Class 12</span>
+            <img
+              src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/50a0771b-1c40-460d-847d-2f45a58b4898.png"
+              alt="PARISHRAM RBSE 2027 Class 12 Hindi Medium"
+              loading="lazy"
+            />
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span>Hindi</span>
+              <span>RBSE 2027</span>
+            </div>
+            <h3>PARISHRAM RBSE 2027 Class-12th HINDI MEDIUM</h3>
+
+            <div class="details">
+              <div class="detail"><span>Class</span><strong>12th</strong></div>
+              <div class="detail"><span>Exam</span><strong>School / RBSE</strong></div>
+              <div class="detail"><span>Starts</span><strong>21 Apr 2026</strong></div>
+              <div class="detail"><span>Ends</span><strong>31 Mar 2027</strong></div>
+            </div>
+
+            <div class="card-footer">
+              <div class="price"><small>Listed Price</small><strong>₹4,999</strong></div>
+              <button class="action" type="button" onclick="openBatch('69946a332b41e7f0d9859a83', 'PARISHRAM RBSE 2027')">Open Batch</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="about">
+    <div class="container footer-inner">
+      <span>© 2026 StudyHub. Built for students.</span>
+      <span>Batch information directory</span>
+    </div>
+  </footer>
+
+  <section class="batch-view" id="batchView" aria-hidden="true">
+    <div class="viewer-bar">
+      <div class="viewer-left">
+        <button class="back-btn" type="button" onclick="closeBatch()">← Back</button>
+        <div class="viewer-title" id="viewerTitle">Batch</div>
+      </div>
+      <a class="direct-btn" id="directBatchLink" href="#" target="_blank" rel="noopener noreferrer">Open directly ↗</a>
+    </div>
+
+    <div class="viewer-stage">
+      <iframe
+        id="batchFrame"
+        class="batch-frame"
+        title="Selected batch"
+        src="about:blank"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="fullscreen; clipboard-read; clipboard-write"
+        allowfullscreen
+      ></iframe>
+      <div class="viewer-note">Embedded source page • 92% zoom</div>
+    </div>
+  </section>
+
+  <script>
+    const BATCH_SOURCE = "https://s4-cdn.samfygros.com/";
+
+    function openBatch(batchId, batchName) {
+      const url = `${BATCH_SOURCE}#batch/${encodeURIComponent(batchId)}`;
+      const view = document.getElementById("batchView");
+      const frame = document.getElementById("batchFrame");
+
+      document.getElementById("viewerTitle").textContent = batchName;
+      document.getElementById("directBatchLink").href = url;
+      frame.src = url;
+
+      view.classList.add("active");
+      view.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closeBatch() {
+      const view = document.getElementById("batchView");
+      const frame = document.getElementById("batchFrame");
+
+      view.classList.remove("active");
+      view.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+
+      // Stop any audio/video and clear the external page after closing.
+      frame.src = "about:blank";
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && document.getElementById("batchView").classList.contains("active")) {
+        closeBatch();
+      }
+    });
+  </script>
 
 </body>
 </html>
